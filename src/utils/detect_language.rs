@@ -17,6 +17,7 @@ pub fn detect_language(path: &str) -> String {
             let lang = detection.language().to_lowercase();
             match lang.as_str() {
                 "shell" => "bash".to_string(),
+                "c++" => "cpp".to_string(),
                 _ => lang
             }
         },
@@ -47,5 +48,11 @@ mod tests {
     fn test_detect_shell_script() {
         let path = "./utils/script.sh";
         assert_eq!(detect_language(path), "bash")
+    }
+
+    #[test]
+    fn detect_cplusplus_source_code() {
+        let path = "src/marlin_stubs/M123.cpp";
+        assert_eq!(detect_language(path), "cpp");
     }
 }
